@@ -22,64 +22,62 @@ const sortingButton = header.append('button')
 
 // Add our tb
 const table = d3.select("body").append("table");
-        var thead = table.append("thead");
-        var tbody = table.append("tbody");
+var thead = table.append("thead");
+var tbody = table.append("tbody");
 
-        var mydata = details;
-        var startIdx = 0; 
-        var loadPerPage = 10;
+var mydata = details;
+var startIdx = 0;
+var loadPerPage = 10;
 
-        var endIdx = startIdx - loadPerPage;
-        var mydataSub = mydata.slice(startIdx, endIdx);
+var endIdx = startIdx - loadPerPage;
+var mydataSub = mydata.slice(startIdx, endIdx);
 
 // Create the header for our table 
-var columns = ["Datetime ","City ","State ","Country ","Shape ","Duration in Minutes ",
-"Comments"]
+var columns = ["Datetime ", "City ", "State ", "Country ", "Shape ", "Duration in Minutes ",
+    "Comments"
+]
 
 thead.append("tr")
-.selectAll("th")
-.data(columns)
-.enter()
-.append("th")
-.text(function(column)
-{
-    return column;
-})
+    .selectAll("th")
+    .data(columns)
+    .enter()
+    .append("th")
+    .text(function (column) {
+        return column;
+    })
 
 
 // add our the data to the rows of the table.
-for (var i = 0; i < mydataSub.length; i++){
+for (var i = 0; i < mydataSub.length; i++) {
     var subdata = mydataSub[i];
     var subfield = Object.keys(subdata);
     //console.log(subdata)
 }
 
-for (var j = 0; j <subfield; j ++){
+for (var j = 0; j < subfield; j++) {
     var sfield = subfield[j];
 
 }
 var rows = tbody.selectAll("tr")
-.data(mydata).enter()
-.append("tr");
+    .data(mydata).enter()
+    .append("tr");
 
 var cells = rows.selectAll("td")
-.data(function(row){
-    return subfield.map(function(column){
-       console.log(subfield);
-        
-        return{
-            column: subfield,
-            value: row[column]
-        }
-    
-    })
-})
-.enter()
-.append("td")
-.text(function(d){
-   //console.log(d);
-    return d.value;
- 
-}
-)
+    .data(function (row) {
+        return subfield.map(function (column) {
+            console.log(subfield);
 
+            return {
+                column: subfield,
+                value: row[column]
+            }
+
+        })
+    })
+    .enter()
+    .append("td")
+    .text(function (d) {
+        //console.log(d);
+        return d.value;
+
+    })
